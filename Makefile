@@ -20,7 +20,7 @@ build: ## Rebuilds all the containers
 	U_ID=${UID} docker-compose build --no-cache
 
 restart: ## Restart the containers
-	$(MAKE) stop && $(MAKE) run
+	$(MAKE) stop && $(MAKE) run && $(MAKE) cache-clear
 
 prepare: ## Runs backend commands
 	$(MAKE) composer-install
