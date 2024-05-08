@@ -3,7 +3,8 @@
 namespace App\Controller;
 
 // ...
-use App\Entity\Product;
+use App\domain\Product;
+use App\domain\Product2;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -13,9 +14,9 @@ class ProductController
     #[Route('/product', name: 'create_product')]
     public function createProduct(EntityManagerInterface $entityManager): Response
     {
-        $product = new Product();
-        $product->setName('Keyboard');
-        $product->setPrice(1999);
+        $product = new Product2();
+        $product->setName('Visor');
+        $product->setPrice(3434);
 
         // tell Doctrine you want to (eventually) save the Product (no queries yet)
         $entityManager->persist($product);
@@ -27,7 +28,7 @@ class ProductController
     }
     public function getProducts(EntityManagerInterface $entityManager): Response
     {
-        $product = $entityManager->getRepository(Product::class)->findAll();
+        $product = $entityManager->getRepository(Product2::class)->findAll();
 
         $allProducts = [];
         foreach ($product as $p) {
@@ -35,6 +36,6 @@ class ProductController
         }
 
 
-        return new Response('Check out this great product: '.implode(', ', $allProducts));
+        return new Response('Check out this greoooat product: '.implode(', ', $allProducts));
     }
 }
