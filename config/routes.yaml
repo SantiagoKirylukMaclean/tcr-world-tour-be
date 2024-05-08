@@ -20,3 +20,13 @@ racers_get:
     path: v1/racers
     controller: App\Controller\RacerController::getRacers
     methods: ['GET']
+
+product_create:
+    path: product
+    controller: App\Controller\ProductController::createProduct
+    methods: ['GET']
+
+product_get:
+    path: get/product
+    controller: App\Controller\ProductController::getProducts
+    methods: ['GET']
