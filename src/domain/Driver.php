@@ -2,6 +2,7 @@
 
 namespace App\domain;
 use App\infrastructure\repository\DriverRepository;
+use Ramsey\Uuid\Uuid;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: DriverRepository::class)]
@@ -9,9 +10,9 @@ use Doctrine\ORM\Mapping as ORM;
 class Driver
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'string', length: 36)]
-    private $id;
+    #[ORM\GeneratedValue(strategy: 'NONE')]
+    #[ORM\Column(type: 'string', unique: true)]
+    private ?string $id;
 
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $firstName;
@@ -27,6 +28,11 @@ class Driver
     public function getId(): ?string
     {
         return $this->id;
+    }
+
+    public function __construct()
+    {
+        $this->id = Uuid::uuid4();
     }
 
     public function getFirstName(): ?string

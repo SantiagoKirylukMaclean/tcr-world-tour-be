@@ -30,6 +30,8 @@ RUN mv php-cs-fixer /usr/local/bin/php-cs-fixer
 RUN composer require symfony/orm-pack
 RUN composer require --dev symfony/maker-bundle
 RUN composer require nelmio/cors-bundle
+RUN composer require ramsey/uuid
+
 
 RUN mkdir -p /app
 
