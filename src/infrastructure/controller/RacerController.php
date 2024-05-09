@@ -1,10 +1,10 @@
 <?php
-namespace App\Controller;
+namespace App\infrastructure\controller;
 
+use App\application\Race;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Exception;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use App\application\Race;
 
 class RacerController
 {

@@ -1,9 +1,7 @@
 <?php
-// src/Controller/ProductController.php
-namespace App\Controller;
+namespace App\infrastructure\controller;
 
-// ...
-use App\domain\Product;
+
 use App\domain\Product2;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;

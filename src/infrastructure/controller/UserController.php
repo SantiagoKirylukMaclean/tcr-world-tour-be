@@ -1,5 +1,5 @@
 <?php
-namespace App\Controller;
+namespace App\infrastructure\controller;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Exception;

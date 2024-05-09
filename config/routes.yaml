@@ -1,32 +1,32 @@
 controllers:
     resource:
-        path: ../src/Controller/
-        namespace: App\Controller
+        path: ../src/infrastructure/controller/
+        namespace: App\infrastructure\controller
     type: attribute
 
 user_test:
     path: /user/test
-    controller: App\Controller\UserController::test
+    controller: App\infrastructure\controller\UserController::test
 
 user_get:
     path: /user/get
-    controller: App\Controller\UserController::getUsers
+    controller: App\infrastructure\controller\UserController::getUsers
 
 user_create:
     path: /user/create
-    controller: App\Controller\UserController::createUser
+    controller: App\infrastructure\controller\UserController::createUser
 
 racers_get:
     path: v1/racers
-    controller: App\Controller\RacerController::getRacers
+    controller: App\infrastructure\controller\RacerController::getRacers
     methods: ['GET']
 
 product_create:
     path: product
-    controller: App\Controller\ProductController::createProduct
+    controller: App\infrastructure\controller\ProductController::createProduct
     methods: ['GET']
 
 product_get:
     path: get/product
-    controller: App\Controller\ProductController::getProducts
+    controller: App\infrastructure\controller\ProductController::getProducts
     methods: ['GET']
