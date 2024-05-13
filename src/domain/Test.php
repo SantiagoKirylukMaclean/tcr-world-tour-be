@@ -2,7 +2,7 @@
 
 namespace App\domain;
 
-use App\Repository\TestRepository;
+use App\infrastructure\repository\TestRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TestRepository::class)]

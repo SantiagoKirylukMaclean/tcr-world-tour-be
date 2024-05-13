@@ -1,40 +1,40 @@
 <?php
 
-namespace App\Repository;
+namespace App\infrastructure\repository;
 
-use App\domain\Product;
+use App\domain\Test;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Product>
+ * @extends ServiceEntityRepository<Test>
  */
-class ProductRepository extends ServiceEntityRepository
+class TestRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Product::class);
+        parent::__construct($registry, Test::class);
     }
 
     //    /**
-    //     * @return Product[] Returns an array of Product objects
+    //     * @return Test[] Returns an array of Test objects
     //     */
     //    public function findByExampleField($value): array
     //    {
-    //        return $this->createQueryBuilder('p')
-    //            ->andWhere('p.exampleField = :val')
+    //        return $this->createQueryBuilder('t')
+    //            ->andWhere('t.exampleField = :val')
     //            ->setParameter('val', $value)
-    //            ->orderBy('p.id', 'ASC')
+    //            ->orderBy('t.id', 'ASC')
     //            ->setMaxResults(10)
     //            ->getQuery()
     //            ->getResult()
     //        ;
     //    }
 
-    //    public function findOneBySomeField($value): ?Product
+    //    public function findOneBySomeField($value): ?Test
     //    {
-    //        return $this->createQueryBuilder('p')
-    //            ->andWhere('p.exampleField = :val')
+    //        return $this->createQueryBuilder('t')
+    //            ->andWhere('t.exampleField = :val')
     //            ->setParameter('val', $value)
     //            ->getQuery()
     //            ->getOneOrNullResult()

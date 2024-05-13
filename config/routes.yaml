@@ -31,12 +31,7 @@ product_get:
     controller: App\infrastructure\controller\ProductController::getProducts
     methods: ['GET']
 
-driver_create:
-    path: driver
-    controller: App\infrastructure\controller\DriverController::createDriver
-    methods: ['GET']
-
 driver_get:
-    path: get/driver
+    path: driver
     controller: App\infrastructure\controller\DriverController::getDrivers
     methods: ['GET']
