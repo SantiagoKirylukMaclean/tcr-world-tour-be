@@ -3,10 +3,11 @@ namespace App\infrastructure\controller;
 
 
 use App\domain\Driver;
+use App\infrastructure\controller\dto\DriverDTO;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
+
+use Symfony\Component\Serializer\SerializerInterface;
 
 class DriverController
 {
@@ -26,16 +27,22 @@ class DriverController
 //
 //        return new Response('Saved new product with id '.$driver->getId());
 //    }
-    public function getDrivers(EntityManagerInterface $entityManager): JsonResponse
+    public function getDrivers(SerializerInterface $serializer, EntityManagerInterface $entityManager): JsonResponse
     {
         $drivers = $entityManager->getRepository(Driver::class)->findAll();
+        $driverDTOs = [];
 
-        $allDrivers = [];
-        foreach ($drivers as $p) {
-            $allDrivers[] = $p->getLastName();
+        foreach ($drivers as $driver) {
+            $driverDTOs[] = new DriverDTO(
+                $driver->getId(),
+                $driver->getFirstName(),
+                $driver->getLastName(),
+                $driver->getIsDnf()
+            );
         }
 
+        $data = $serializer->serialize($driverDTOs, 'json');
 
-        return new JsonResponse($allDrivers);
+        return new JsonResponse($data, 200, [], true);
     }
 }
