@@ -2,11 +2,11 @@
 
 namespace App\domain;
 
-use App\infrastructure\repository\CircuitRepository;
+use App\infrastructure\repository\DoctrineCircuitRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 
-#[ORM\Entity(repositoryClass: CircuitRepository::class)]
+#[ORM\Entity(repositoryClass: DoctrineCircuitRepository::class)]
 class Circuit
 {
     #[ORM\Id]

@@ -2,11 +2,11 @@
 
 namespace App\domain;
 
-use App\infrastructure\repository\TeamRepository;
+use App\infrastructure\repository\DoctrineTeamRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 
-#[ORM\Entity(repositoryClass: TeamRepository::class)]
+#[ORM\Entity(repositoryClass: DoctrineTeamRepository::class)]
 class Team
 {
     #[ORM\Id]

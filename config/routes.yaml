@@ -32,6 +32,11 @@ product_get:
     methods: ['GET']
 
 driver_get:
-    path: driver
+    path: v1/driver
     controller: App\infrastructure\controller\DriverController::getDrivers
+    methods: ['GET']
+
+team_get:
+    path: v1/team
+    controller: App\infrastructure\controller\TeamController::getTeams
     methods: ['GET']
