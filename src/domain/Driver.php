@@ -1,11 +1,11 @@
 <?php
 
 namespace App\domain;
-use App\infrastructure\repository\DriverRepository;
+use App\infrastructure\repository\DoctrineDriverRepository;
 use Ramsey\Uuid\Uuid;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: DriverRepository::class)]
+#[ORM\Entity(repositoryClass: DoctrineDriverRepository::class)]
 
 class Driver
 {

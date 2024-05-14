@@ -16,7 +16,7 @@ class DriverController
     }
     public function getDrivers(SerializerInterface $serializer): JsonResponse
     {
-        $driverDTOs[] = $this->obtainDrivers->obtainDrivers();
+        $driverDTOs = $this->obtainDrivers->obtainDrivers();
         $data = $serializer->serialize($driverDTOs, 'json');
         return new JsonResponse($data, 200, [], true);
     }
