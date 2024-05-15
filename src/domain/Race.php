@@ -2,11 +2,12 @@
 
 namespace App\domain;
 
-use App\infrastructure\repository\RaceRepository;
+use App\infrastructure\repository\DoctrineRaceRepository;
+use App\infrastructure\repository\RaceRepositoryOLD;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 
-#[ORM\Entity(repositoryClass: RaceRepository::class)]
+#[ORM\Entity(repositoryClass: DoctrineRaceRepository::class)]
 class Race
 {
     #[ORM\Id]
