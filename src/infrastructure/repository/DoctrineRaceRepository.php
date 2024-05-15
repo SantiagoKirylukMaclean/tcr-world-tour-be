@@ -2,10 +2,8 @@
 
 namespace App\infrastructure\repository;
 
-use App\domain\Circuit;
-use App\domain\CircuitRepository;
-use App\domain\Race;
 use App\domain\RaceRepository;
+use App\infrastructure\Entity\Race;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -21,10 +19,8 @@ class DoctrineRaceRepository extends ServiceEntityRepository implements RaceRepo
 
     public function createRace(Race $race): void
     {
-        //$this->registry->persist($race);
         parent::getEntityManager()->persist($race);
         parent::getEntityManager()->flush();
-
     }
 
     public function obtainRaces(): array

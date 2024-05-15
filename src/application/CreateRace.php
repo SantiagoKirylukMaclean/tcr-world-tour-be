@@ -3,9 +3,8 @@
 namespace App\application;
 
 use App\domain\CircuitRepository;
-use App\domain\Race;
 use App\domain\RaceRepository;
-use App\infrastructure\controller\dto\TeamDTO;
+use App\infrastructure\Entity\Race;
 use DateTime;
 use DateTimeZone;
 

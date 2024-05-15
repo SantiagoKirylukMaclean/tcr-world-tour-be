@@ -2,8 +2,8 @@
 
 namespace App\infrastructure\repository;
 
-use App\domain\Circuit;
 use App\domain\CircuitRepository;
+use App\infrastructure\Entity\Circuit;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

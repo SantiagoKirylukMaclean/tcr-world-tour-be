@@ -1,9 +1,9 @@
 <?php
 
-namespace App\domain;
+namespace App\infrastructure\Entity;
 use App\infrastructure\repository\DoctrineDriverRepository;
-use Ramsey\Uuid\Uuid;
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Uuid;
 
 #[ORM\Entity(repositoryClass: DoctrineDriverRepository::class)]
 

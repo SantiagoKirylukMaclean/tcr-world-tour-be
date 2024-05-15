@@ -1,9 +1,10 @@
 <?php
 
-namespace App\domain;
+namespace App\infrastructure\Entity;
 
 use App\infrastructure\repository\DoctrineRaceRepository;
-use App\infrastructure\repository\RaceRepositoryOLD;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 
@@ -20,6 +21,12 @@ class Race
 
     #[ORM\Column(type: 'datetime')]
     private $date;
+
+    /**
+     * @var Collection<int, Session>
+     */
+    #[ORM\OneToMany(targetEntity: Session::class, mappedBy: 'race', orphanRemoval: true)]
+    private Collection $sessions;
 
     // Getters and setters
 
@@ -53,5 +60,36 @@ class Race
     public function __construct()
     {
         $this->id = Uuid::uuid4();
+        $this->sessions = new ArrayCollection();
+    }
+
+    /**
+     * @return Collection<int, Session>
+     */
+    public function getSessions(): Collection
+    {
+        return $this->sessions;
+    }
+
+    public function addSession(Session $session): static
+    {
+        if (!$this->sessions->contains($session)) {
+            $this->sessions->add($session);
+            $session->setRace($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSession(Session $session): static
+    {
+        if ($this->sessions->removeElement($session)) {
+            // set the owning side to null (unless already changed)
+            if ($session->getRace() === $this) {
+                $session->setRace(null);
+            }
+        }
+
+        return $this;
     }
 }

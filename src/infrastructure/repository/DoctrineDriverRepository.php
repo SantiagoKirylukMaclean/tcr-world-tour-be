@@ -2,8 +2,8 @@
 
 namespace App\infrastructure\repository;
 
-use App\domain\Driver;
 use App\domain\DriverRepository;
+use App\infrastructure\Entity\Driver;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

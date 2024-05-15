@@ -1,6 +1,6 @@
 <?php
 
-namespace App\domain;
+namespace App\infrastructure\Entity;
 
 use App\infrastructure\repository\DoctrineCircuitRepository;
 use Doctrine\ORM\Mapping as ORM;
