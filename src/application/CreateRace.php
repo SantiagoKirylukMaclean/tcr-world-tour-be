@@ -30,21 +30,5 @@ class CreateRace
         $race->setDate($date);
         $this->raceRepository->createRace($race);
     }
-//    {
-//        $teams = $this->teamRepository->obtainTeams();
-//
-//        $teamsDTOs = [];
-//
-//        foreach ($teams as $team) {
-//            $teamsDTOs[] = new teamDTO(
-//                $team->getId(),
-//                $team->getName(),
-//                $team->getLogo(),
-//                $team->getColors()
-//            );
-//        }
-//        return $teamsDTOs;
-//
-//    }
 }
 

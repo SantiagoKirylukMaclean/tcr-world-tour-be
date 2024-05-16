@@ -28,4 +28,9 @@ class DoctrineRaceRepository extends ServiceEntityRepository implements RaceRepo
         return parent::findAll();
     }
 
+    public function obtainRaceById(string $raceId): Race
+    {
+        return parent::find($raceId);
+    }
+
 }
