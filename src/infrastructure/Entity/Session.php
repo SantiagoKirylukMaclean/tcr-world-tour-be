@@ -2,11 +2,11 @@
 
 namespace App\infrastructure\Entity;
 
-use App\infrastructure\Repository\SessionRepository;
+use App\infrastructure\Repository\DoctrineSessionRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: SessionRepository::class)]
+#[ORM\Entity(repositoryClass: DoctrineSessionRepository::class)]
 class Session
 {
     #[ORM\Id]
