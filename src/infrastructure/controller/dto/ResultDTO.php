@@ -7,15 +7,18 @@ class ResultDTO
     private string $id;
     private string $position;
     private string $points;
+    private string $typeSession;
     private DriverDTO $driver;
 
-    public function __construct(string $id, string $position, string $points, DriverDTO $driver)
+    public function __construct(string $id, string $position, string $points,  string $typeSession, DriverDTO $driver)
     {
         $this->id = $id;
         $this->position = $position;
         $this->points = $points;
         $this->driver = $driver;
+        $this->typeSession = $typeSession;
     }
+
 
     public function getId(): string
     {
@@ -55,5 +58,15 @@ class ResultDTO
     public function setDriver(DriverDTO $driver): void
     {
         $this->driver = $driver;
+    }
+
+    public function getTypeSession(): string
+    {
+        return $this->typeSession;
+    }
+
+    public function setTypeSession(string $typeSession): void
+    {
+        $this->typeSession = $typeSession;
     }
 }

@@ -6,11 +6,10 @@ use App\domain\CircuitRepository;
 use App\domain\DriverRepository;
 use App\domain\RaceRepository;
 use App\domain\ResultRepository;
-use App\domain\SessionRepository;
+use App\infrastructure\controller\dto\CreateResultDTO;
 use App\infrastructure\controller\dto\CreateSessionDTO;
 use App\infrastructure\Entity\Race;
 use App\infrastructure\Entity\Result;
-use App\infrastructure\Entity\Session;
 use DateTime;
 use DateTimeZone;
 
@@ -27,19 +26,23 @@ class CreateResult
         $this->driverRepository = $driverRepository;
     }
 
-    public function createResult(): void
+    public function createResult(array $createRacetDTO): void
     {
+        foreach ($createRacetDTO as $resultDTO) {
+            $race = $this->raceRepository->obtainRaceById($resultDTO->getRaceId());
+            $driver = $this->driverRepository->obtainDriverById($resultDTO->getDriverId());
+            foreach ($resultDTO->getResults() as $resultRaceDTO){
+                $result = new Result();
+                $result->setRace($race);
+                $result->setDriver($driver);
+                //TODO: how to set result dto as CreateResultDTO
+                $result->setTypeSession($resultRaceDTO['session_type']);
+                $result->setPosition($resultRaceDTO['position']);
+                $result->setPoints($resultRaceDTO['points']);
 
-        $race = $this->raceRepository->obtainRaceById('e20f3cbb-4d06-4c51-b2cc-69ca0af8660b');
-        $driver = $this->driverRepository->obtainDriverById('1d1e39f1-3173-469d-8d51-b9b0c8553998');
-        $result = new Result();
-        $result->setRace($race);
-        $result->setDriver($driver);
-        $result->setTypeSession('Qualifying');
-        $result->setPosition(9);
-        $result->setPoints(0);
-
-        $this->resultRepository->createResult($result);
+                $this->resultRepository->createResult($result);
+            }
+        }
     }
 
 

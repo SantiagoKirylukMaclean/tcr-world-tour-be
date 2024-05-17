@@ -7,8 +7,6 @@ use App\infrastructure\controller\dto\DriverDTO;
 use App\infrastructure\controller\dto\RaceDTO;
 use App\infrastructure\controller\dto\CircuitDTO;
 use App\infrastructure\controller\dto\ResultDTO;
-use Doctrine\Common\Collections\Collection;
-
 class ObtainRaces
 {
 
@@ -30,12 +28,13 @@ class ObtainRaces
                     $result->getIdResult(),
                     $result->getposition(),
                     $result->getPoints(),
+                    $result->getTypeSession(),
                     new DriverDTO(
                         $result->getDriver()->getId(),
                         $result->getDriver()->getFirstName(),
                         $result->getDriver()->getLastName(),
                         $result->getDriver()->getIsDnf()
-                    ),
+                    )
                 );
             }
             $RaceDTOs[] = new RaceDTO(
