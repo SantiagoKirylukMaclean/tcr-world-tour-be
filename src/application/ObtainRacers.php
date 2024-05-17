@@ -1,7 +1,7 @@
 <?php
 namespace App\application;
 
-class Race
+class ObtainRacers
 {
 public static function getRacers(): array
 {

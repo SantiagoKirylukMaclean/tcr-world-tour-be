@@ -22,4 +22,9 @@ class DoctrineDriverRepository extends ServiceEntityRepository implements Driver
         return parent::findAll();
     }
 
+    public function obtainDriverById(string $id): Driver
+    {
+        return parent::find($id);
+    }
+
 }

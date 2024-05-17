@@ -5,7 +5,6 @@ namespace App\application;
 use App\domain\CircuitRepository;
 
 use App\infrastructure\controller\dto\CircuitDTO;
-use App\infrastructure\controller\dto\TeamDTO;
 
 class ObtainCircuit
 {
@@ -24,7 +23,7 @@ class ObtainCircuit
 
         foreach ($circuits as $circuit) {
             $teamsDTOs[] = new circuitDTO(
-                $circuit->getId(),
+                $circuit->getIdCircuit(),
                 $circuit->getCity(),
                 $circuit->getLongitudeInMeters()
             );

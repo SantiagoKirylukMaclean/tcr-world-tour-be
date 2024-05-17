@@ -12,7 +12,7 @@ class Team
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: 'NONE')]
     #[ORM\Column(type: 'string', unique: true)]
-    private ?string $id;
+    private ?string $id_team;
 
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $name;
@@ -25,14 +25,14 @@ class Team
 
 // Getters and setters
 
-    public function getId(): ?string
+    public function getIdTeam(): ?string
     {
-        return $this->id;
+        return $this->id_team;
     }
 
     public function __construct()
     {
-        $this->id = Uuid::uuid4();
+        $this->id_team = Uuid::uuid4();
     }
 
     public function getName(): ?string

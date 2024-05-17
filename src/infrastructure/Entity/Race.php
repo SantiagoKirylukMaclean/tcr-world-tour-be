@@ -14,25 +14,26 @@ class Race
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: 'NONE')]
     #[ORM\Column(type: 'string', unique: true)]
-    private ?string $id;
+    private ?string $id_race;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $name;
 
     #[ORM\ManyToOne(targetEntity: Circuit::class)]
-    private $circuit;
+    #[ORM\JoinColumn(name: 'id_circuit', referencedColumnName: 'id_circuit', nullable: false, onDelete: 'CASCADE')]
+    private ?Circuit $circuit;
 
     #[ORM\Column(type: 'datetime')]
     private $date;
 
-    /**
-     * @var Collection<int, Session>
-     */
-    #[ORM\OneToMany(targetEntity: Session::class, mappedBy: 'race', orphanRemoval: true)]
-    private Collection $sessions;
+    #[ORM\OneToMany(targetEntity: 'Result', mappedBy:'race')]
+    private Collection $results;
 
     // Getters and setters
 
-    public function getId(): ?string
+    public function getIdRace(): ?string
     {
-        return $this->id;
+        return $this->id_race;
     }
 
     public function getCircuit(): ?Circuit
@@ -59,37 +60,29 @@ class Race
 
     public function __construct()
     {
-        $this->id = Uuid::uuid4();
-        $this->sessions = new ArrayCollection();
+        $this->id_race = Uuid::uuid4();
+        $this->results = new ArrayCollection();
     }
 
-    /**
-     * @return Collection<int, Session>
-     */
-    public function getSessions(): Collection
+    public function getName(): ?string
     {
-        return $this->sessions;
+        return $this->name;
     }
 
-    public function addSession(Session $session): static
+    public function setName(?string $name): void
     {
-        if (!$this->sessions->contains($session)) {
-            $this->sessions->add($session);
-            $session->setRace($this);
-        }
-
-        return $this;
+        $this->name = $name;
     }
 
-    public function removeSession(Session $session): static
+    public function getResults(): ArrayCollection|Collection
     {
-        if ($this->sessions->removeElement($session)) {
-            // set the owning side to null (unless already changed)
-            if ($session->getRace() === $this) {
-                $session->setRace(null);
-            }
-        }
-
-        return $this;
+        return $this->results;
     }
+
+    public function setResults(ArrayCollection|Collection $results): void
+    {
+        $this->results = $results;
+    }
+
+
 }

@@ -3,9 +3,11 @@
 namespace App\application;
 
 use App\domain\RaceRepository;
-use App\domain\TeamRepository;
+use App\infrastructure\controller\dto\DriverDTO;
 use App\infrastructure\controller\dto\RaceDTO;
 use App\infrastructure\controller\dto\CircuitDTO;
+use App\infrastructure\controller\dto\ResultDTO;
+use Doctrine\Common\Collections\Collection;
 
 class ObtainRaces
 {
@@ -22,14 +24,29 @@ class ObtainRaces
         $RaceDTOs = [];
 
         foreach ($races as $race) {
+            $resultDTOs = [];
+            foreach ($race->getResults() as $result) {
+                $resultDTOs[] = new ResultDTO(
+                    $result->getIdResult(),
+                    $result->getposition(),
+                    $result->getPoints(),
+                    new DriverDTO(
+                        $result->getDriver()->getId(),
+                        $result->getDriver()->getFirstName(),
+                        $result->getDriver()->getLastName(),
+                        $result->getDriver()->getIsDnf()
+                    ),
+                );
+            }
             $RaceDTOs[] = new RaceDTO(
-                $race->getId(),
+                $race->getIdRace(),
                 new CircuitDTO(
-                    $race->getCircuit()->getId(),
+                    $race->getCircuit()->getIdCircuit(),
                     $race->getCircuit()->getCity(),
                     $race->getCircuit()->getLongitudeInMeters()
                 ),
-                $race->getDate()
+                $race->getDate(),
+                $resultDTOs
             );
         }
         return $RaceDTOs;

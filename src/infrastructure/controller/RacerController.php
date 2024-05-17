@@ -1,7 +1,7 @@
 <?php
 namespace App\infrastructure\controller;
 
-use App\application\Race;
+use App\application\ObtainRacers;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Exception;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -15,6 +15,6 @@ class RacerController
     public function getRacers(Connection $connection): JsonResponse
     {
 
-        return new JsonResponse(Race::getRacers($connection));
+        return new JsonResponse(ObtainRacers::getRacers($connection));
     }
 }

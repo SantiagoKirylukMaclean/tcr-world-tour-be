@@ -22,7 +22,7 @@ class ObtainTeams
 
         foreach ($teams as $team) {
             $teamsDTOs[] = new teamDTO(
-                $team->getId(),
+                $team->getIdTeam(),
                 $team->getName(),
                 $team->getLogo(),
                 $team->getColors()

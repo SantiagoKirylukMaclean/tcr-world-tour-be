@@ -12,7 +12,7 @@ class Circuit
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: 'NONE')]
     #[ORM\Column(type: 'string', unique: true)]
-    private ?string $id;
+    private ?string $id_circuit;
 
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $city;
@@ -22,14 +22,14 @@ class Circuit
 
     // Getters and setters
 
-    public function getId(): ?string
+    public function getIdCircuit(): ?string
     {
-        return $this->id;
+        return $this->id_circuit;
     }
 
     public function __construct()
     {
-        $this->id = Uuid::uuid4();
+        $this->id_circuit = Uuid::uuid4();
     }
 
     public function getCity(): ?string
