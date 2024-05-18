@@ -1,17 +1,23 @@
 <?php
 namespace App\application;
 
-use App\infrastructure\controller\dto\RaceDTO;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Psr\Cache\InvalidArgumentException;
+use Symfony\Contracts\Cache\CacheInterface;
+use Symfony\Contracts\Cache\ItemInterface;
+
+
 
 class ObtainRacers
 {
     private ObtainRaces $obtainRaces;
+    private $cache;
 
-    public function __construct(ObtainRaces $obtainRaces)
+    public function __construct(ObtainRaces $obtainRaces, CacheInterface $cache)
     {
         $this->obtainRaces = $obtainRaces;
+        $this->cache = $cache;
     }
+
     public static function getRacers(): array
     {
         return [
@@ -239,13 +245,23 @@ class ObtainRacers
         ];
     }
 
+    /**
+     * @throws InvalidArgumentException
+     */
     public function getRacersJson(): string
     {
-        $allRaces = $this->obtainRaces->obtainRaces();
-        return $this->convertJson($allRaces);
+
+        return $this->cache->get('racers_data', function (ItemInterface $item)
+        {
+
+            $item->expiresAfter(3600); // 1 hora
+            var_dump('Cache miss');
+            $allRaces = $this->obtainRaces->obtainRaces();
+            return $this->convertJson($allRaces);
+        }
+        );
     }
     function convertJson($inputJson): string{
-        //$inputArray = json_decode($inputJson, true);
         $drivers = [];
 
         foreach ($inputJson as $event) {
@@ -256,45 +272,32 @@ class ObtainRacers
                     $drivers[$driverId] = [
                         'firstName' => $result->getDriver()->getFirstName(),
                         'lastName' => $result->getDriver()->getLastName(),
-                        'team' => $this->getTeam($driverId), // Suponiendo que tienes una función que devuelve el equipo del conductor
+                        'team' => $this->getTeam($driverId),
                         'championshipStandings' => 0,
                         'qualify' => 0,
                         'race' => 0,
-                        'isWorldTour' => true, // Suponiendo que esta información es fija
+                        'isWorldTour' => true,
                         'isDnf' => $result->getDriver()->getIsDnf(),
                         'id' => $driverId
                     ];
                 }
-
-                // Acumulamos los puntos
                 $drivers[$driverId]['championshipStandings'] += (int)$result->getPoints();
-
-                // Contamos sesiones de calificación y carreras
-                if ($result->getTypeSession() == 'Qualifying') {
-                    $drivers[$driverId]['qualify']++;
-                } else {
-                    $drivers[$driverId]['race']++;
-                }
             }
         }
-
-        // Convertimos el resultado final a un array indexado
-       $outputArray = array_values($drivers);
+        $outputArray = array_values($drivers);
 
         return json_encode($outputArray, JSON_PRETTY_PRINT);
     }
 
     function getTeam($driverId) {
-        // Aquí deberías tener la lógica para obtener el equipo del conductor basado en su ID.
-        // Para este ejemplo, devolveremos equipos ficticios.
+
         $teams = [
             '1d1e39f1-3173-469d-8d51-b9b0c8553998' => 'Hyundai',
             '6182b28b-4b50-4d12-b800-1415de59a920' => 'Cyan',
             'cbf2c2c1-18a0-4dc9-aa55-190ad67aa82e' => 'Volcano',
             'e3c8966a-1a34-4ed3-8541-0672d5f2d06f' => 'Cyan',
             '2f646a1c-f9b1-4e57-9442-b7e2878e2de7' => 'GOAT',
-            // Agrega más equipos según sea necesario
-        ];
+            ];
 
         return $teams[$driverId] ?? 'Unknown';
     }

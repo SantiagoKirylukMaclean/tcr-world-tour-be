@@ -32,6 +32,7 @@ RUN composer require --dev symfony/maker-bundle
 RUN composer require nelmio/cors-bundle
 RUN composer require ramsey/uuid
 RUN composer require symfony/serializer
+RUN composer require predis/predis
 
 
 RUN mkdir -p /app
