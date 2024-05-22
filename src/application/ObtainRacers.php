@@ -255,7 +255,6 @@ class ObtainRacers
         {
 
             $item->expiresAfter(3600); // 1 hora
-            var_dump('Cache miss');
             $allRaces = $this->obtainRaces->obtainRaces();
             return $this->convertJson($allRaces);
         }

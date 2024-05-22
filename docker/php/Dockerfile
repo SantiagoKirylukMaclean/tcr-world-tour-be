@@ -33,6 +33,12 @@ RUN composer require nelmio/cors-bundle
 RUN composer require ramsey/uuid
 RUN composer require symfony/serializer
 RUN composer require predis/predis
+# Instalación de los paquetes de Codeception
+RUN composer require codeception/codeception --dev
+RUN composer require codeception/module-rest --dev
+RUN composer require codeception/module-symfony --dev
+RUN composer require codeception/module-phpbrowser --dev
+RUN composer require codeception/module-asserts --dev
 
 
 RUN mkdir -p /app
