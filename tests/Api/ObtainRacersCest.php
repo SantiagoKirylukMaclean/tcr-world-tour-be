@@ -12,7 +12,7 @@ class ObtainRacersCest
     }
 
     // tests
-    public function tryToObtainRacersTest(ApiTester $I)
+    public function tryToObtainRacersTest(ApiTester $I): void
     {
         $I->haveHttpHeader('Content-Type', 'application/json');
         $I->haveHttpHeader('Accept', 'application/json');
