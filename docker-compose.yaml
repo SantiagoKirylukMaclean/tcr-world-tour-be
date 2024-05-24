@@ -54,6 +54,17 @@ services:
         aliases:
           - redis
 
+  rabbitmq:
+    container_name: tcr-world-tour-rabbitmq
+    image: rabbitmq:3-management
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    networks:
+      tcr-network:
+        aliases:
+          - rabbitmq
+
 volumes:
   symfony-data:
 
