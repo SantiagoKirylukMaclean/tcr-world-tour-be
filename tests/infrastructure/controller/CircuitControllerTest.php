@@ -6,7 +6,7 @@ use Hautelook\AliceBundle\PhpUnit\RecreateDatabaseTrait;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class RacerControllerTest extends WebTestCase
+class CircuitControllerTest extends WebTestCase
 {
     use RecreateDatabaseTrait;
     private static ?KernelBrowser $baseClient = null;
