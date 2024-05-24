@@ -22,7 +22,7 @@ class RaceController
     #[Route('v1/race/create', name: 'create_product', methods: ['GET'])]
     public function createRace(): JsonResponse
     {
-        //$this->createRace->createRace();
+        $this->createRace->createRace();
         return new JsonResponse;
     }
     #[Route('v1/race', name: 'create_product', methods: ['GET'])]

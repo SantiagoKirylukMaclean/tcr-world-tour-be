@@ -25,6 +25,7 @@ class RacerControllerTest extends WebTestCase
 
     public function testSomething(): void
     {
+        self::$baseClient->request('POST', '/v1/circuit');
 
         self::$baseClient->request('GET', '/v1/circuit');
         $response = self::$baseClient->getResponse();
