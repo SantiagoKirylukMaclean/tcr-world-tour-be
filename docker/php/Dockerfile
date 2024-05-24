@@ -33,6 +33,7 @@ RUN composer require nelmio/cors-bundle
 RUN composer require ramsey/uuid
 RUN composer require symfony/serializer
 RUN composer require predis/predis
+RUN composer require --dev symfony/phpunit-bridge symfony/css-selector hautelook/alice-bundle
 
 
 RUN mkdir -p /app

@@ -22,4 +22,10 @@ class DoctrineCircuitRepository extends ServiceEntityRepository implements Circu
         return $this->findAll();
     }
 
+    public function createCircuit(Circuit $circuit): void
+    {
+        parent::getEntityManager()->persist($circuit);
+        parent::getEntityManager()->flush();
+    }
+
 }

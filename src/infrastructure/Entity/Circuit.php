@@ -20,6 +20,18 @@ class Circuit
     #[ORM\Column(type: 'smallint')]
     private ?int $longitudeInMeters;
 
+    public function __construct(?string $id_circuit, string $city, int $longitudeInMeters)
+    {
+        if ($id_circuit === null) {
+            $this->id_circuit = Uuid::uuid4()->toString();
+        } else {
+            $this->id_circuit = $id_circuit;
+        }
+        $this->city = $city;
+        $this->longitudeInMeters = $longitudeInMeters;
+    }
+
+
     // Getters and setters
 
     public function getIdCircuit(): ?string
@@ -27,10 +39,6 @@ class Circuit
         return $this->id_circuit;
     }
 
-    public function __construct()
-    {
-        $this->id_circuit = Uuid::uuid4();
-    }
 
     public function getCity(): ?string
     {

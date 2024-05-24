@@ -2,6 +2,8 @@
 
 DOCKER_BE = tcr-world-tour-php
 DOCKER_DB = tcr-world-tour-mysql
+RABBITMQ = codenip-ms-rabbitmq-service
+
 UID = $(shell id -u)
 
 help: ## Show this help message
@@ -40,8 +42,12 @@ ssh-be: ## ssh's into the be container
 ssh-db: ## ssh's into the be container
 	U_ID=${UID} docker exec -it --user ${UID} ${DOCKER_DB} bash
 
+ssh-rabbit: ## bash into the container
+	U_ID=${UID} docker exec -it --user ${UID} ${RABBITMQ} bash
+
 code-style: ## Runs php-cs to fix code styling following Symfony rules
 	U_ID=${UID} docker exec -it --user ${UID} ${DOCKER_BE} php-cs-fixer fix src --rules=@Symfony
 
 cache-clear: ## Clear php cache
 	U_ID=${UID} docker exec -it --user ${UID} ${DOCKER_BE} php bin/console cache:clear
+
