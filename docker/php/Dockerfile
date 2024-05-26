@@ -33,7 +33,14 @@ RUN composer require nelmio/cors-bundle
 RUN composer require ramsey/uuid
 RUN composer require symfony/serializer
 RUN composer require predis/predis
+# istall phpunit
 RUN composer require --dev symfony/phpunit-bridge symfony/css-selector hautelook/alice-bundle
+#install messager
+RUN composer require symfony/amqp-messenger symfony/serializer symfony/property-access
+#install validator
+RUN composer require symfony/validator
+#install loger
+RUN composer require symfony/monolog
 
 
 RUN mkdir -p /app

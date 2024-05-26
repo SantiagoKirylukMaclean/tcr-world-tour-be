@@ -2,12 +2,8 @@
 namespace App\infrastructure\controller;
 
 
-use App\application\CreateRace;
 use App\application\CreateResult;
-use App\application\ObtainRaces;
-
 use App\infrastructure\controller\dto\CreateRaceDTO;
-use App\infrastructure\controller\dto\CreateSessionDTO;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Attribute\Route;

@@ -9,6 +9,9 @@ framework:
     #esi: true
     #fragments: true
 
+    validation:
+        enabled: true
+
 when@test:
     framework:
         test: true

@@ -5,7 +5,7 @@ namespace App\infrastructure\controller;
 
 use App\application\CreateCircuit;
 use App\application\ObtainCircuit;
-
+use App\infrastructure\controller\dto\CreateCircuitRequest;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -29,7 +29,7 @@ class CircuitController
     }
 
     #[Route('v1/circuit', name: 'create_circuit', methods: ['POST'])]
-    public function createCircuit(SerializerInterface $serializer): JsonResponse
+    public function createCircuit(CreateCircuitRequest $createCircuitRequest): JsonResponse
     {
         $this->createCircuit->createCircuit();
         return new JsonResponse(null, 201, []);
