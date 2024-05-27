@@ -3,11 +3,20 @@
 namespace App\infrastructure\controller\dto;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class CreateCircuitRequest implements RequestDTO
 {
 
+    #[
+        assert\NotBlank,
+        assert\Length(min: 3, max: 255)
+    ]
     private string $city;
+    #[
+        assert\NotBlank,
+        assert\Length(min: 3, max: 255)
+    ]
     private string $longitudeInMeters;
 
     public function __construct(Request $request)
