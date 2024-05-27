@@ -23,6 +23,15 @@ class CreateCircuitRequest implements RequestDTO
     {
         $data = json_decode($request->getContent(), true);
 
+        if ($data ===  null) {
+            throw new \InvalidArgumentException('Invalid JSON');
+        }
+
+        if (count($data) === 0) {
+            throw new \InvalidArgumentException('Empty JSON');
+        }
+
+
         $this->city = $data['city'];
         $this->longitudeInMeters = $data['longitudeInMeters'];
     }
